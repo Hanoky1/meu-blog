@@ -35,7 +35,7 @@ format:
     
     # --- NOVIDADE 3: Tempo de Leitura ---
     reading-time: true
-    
-    # Opções de código (como é faculdade, é legal mostrar)
-    code-fold: show
+
+    # Opções de código
+    code-fold: true
     code-tools: true
