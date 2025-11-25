@@ -7,20 +7,6 @@
     "text": "Neste post irei mostrar como desenvolver uma função em python que irá se conectar com a API do Banco Central. Esta função utilizará uma consulta que trará a consulta do valor do dólar no mês referente\n\nimport requests\nimport calendar\nfrom datetime import datetime, timedelta\nimport plotly.graph_objects as go\n\n\ndef f(periodo):\n    \"\"\"\n    Busca cotação do dólar para um período (MMYYYY) e gera gráfico.\n    \n    Args:\n        periodo: String no formato \"MMYYYY\" (ex: \"052025\")\n        \n    Returns:\n        Figura do Plotly com gráfico de linha da cotação\n    \"\"\"\n    first_date = datetime.strptime(periodo, \"%m%Y\")\n    last_date = first_date.replace(\n        day=calendar.monthrange(first_date.year, first_date.month)[1]\n    )\n    \n    data_inicial = first_date.strftime(\"%m-%d-%Y\")\n    data_final = last_date.strftime(\"%m-%d-%Y\")\n    \n    url = f\"https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial='{data_inicial}'&@dataFinalCotacao='{data_final}'&$format=json\"\n    \n    print(f\"Buscando cotações de {first_date.strftime('%d/%m/%Y')} a {last_date.strftime('%d/%m/%Y')}...\")\n    \n    try:\n        response = requests.get(url)\n        response.raise_for_status()\n        data = response.json()\n    except requests.exceptions.RequestException as e:\n        print(f\"Erro ao buscar dados: {e}\")\n        return None\n    \n    cotacoes = data.get('value', [])\n    \n    if not cotacoes:\n        print(\"Nenhuma cotação encontrada para este período.\")\n        return None\n    \n    cotacoes_dict = {}\n    for cotacao in cotacoes:\n        data_cotacao = datetime.strptime(cotacao['dataHoraCotacao'], \"%Y-%m-%d %H:%M:%S.%f\")\n        cotacoes_dict[data_cotacao.date()] = {\n            'compra': cotacao['cotacaoCompra'],\n            'venda': cotacao['cotacaoVenda']\n        }\n    \n    datas = []\n    valores_compra = []\n    valores_venda = []\n    \n    current_date = first_date\n    ultima_cotacao = None\n    \n    while current_date &lt;= last_date:\n        date_key = current_date.date()\n        \n        if date_key in cotacoes_dict:\n            ultima_cotacao = cotacoes_dict[date_key]\n        \n        if ultima_cotacao:\n            datas.append(current_date)\n            valores_compra.append(ultima_cotacao['compra'])\n            valores_venda.append(ultima_cotacao['venda'])\n        \n        current_date += timedelta(days=1)\n    \n    fig = go.Figure()\n    \n    fig.add_trace(go.Scatter(\n        x=datas,\n        y=valores_compra,\n        mode='lines+markers',\n        name='Cotação Compra',\n        line=dict(color='blue', width=2),\n        marker=dict(size=4)\n    ))\n    \n    fig.add_trace(go.Scatter(\n        x=datas,\n        y=valores_venda,\n        mode='lines+markers',\n        name='Cotação Venda',\n        line=dict(color='red', width=2),\n        marker=dict(size=4)\n    ))\n    \n    mes_nome = first_date.strftime(\"%B\").capitalize()\n    ano = first_date.year\n    \n    fig.update_layout(\n        title=f'Cotação do Dólar - {mes_nome} de {ano}',\n        xaxis_title='Data',\n        yaxis_title='Cotação (R$)',\n        hovermode='x unified',\n        template='plotly_white',\n        xaxis=dict(tickformat='%d/%m'),\n        height=600\n    )\n    \n    print(f\"Gráfico gerado com sucesso! Total de dias: {len(datas)}\")\n    \n    return fig\n\n\nperiodo = \"052025\"\nfig = f(periodo)\nfig.show()\n\nBuscando cotações de 01/05/2025 a 31/05/2025...\nGráfico gerado com sucesso! Total de dias: 30"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Engenharia de computação 🖥️",
-    "section": "",
-    "text": "Regressão Linear: Estudo vs Salário\n\n\n\nRegressão\n\ndados\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nEdson\n\n\n\n\n\n\n\n\n\n\n\n\nConsulta do dólar\n\n\n\nNotícias\n\nDólar\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nEdson\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Sobre",
-    "section": "",
-    "text": "About this blog"
-  },
-  {
     "objectID": "posts/atividade-2-linear/index.html",
     "href": "posts/atividade-2-linear/index.html",
     "title": "Regressão Linear: Anos de Estudo vs Salário",
@@ -75,5 +61,26 @@
     "title": "Regressão Linear: Anos de Estudo vs Salário",
     "section": "Conclusão",
     "text": "Conclusão\nA análise de regressão linear fornece uma ferramenta poderosa para entender e quantificar a relação entre educação e renda, permitindo fazer previsões e tomar decisões baseadas em dados."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Sobre",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Engenharia de computação 🖥️",
+    "section": "",
+    "text": "Regressão Linear: Estudo vs Salário\n\n\n\nRegressão\n\ndados\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nEdson Silva\n\n\n\n\n\n\n\n\n\n\n\n\nAnálise de Linhas e Paradas SPTrans\n\n\n\nnews\n\ncode\n\nanalysis\n\ntransporte\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nEdson Silva\n\n\n\n\n\n\n\n\n\n\n\n\nConsulta do dólar\n\n\n\nNotícias\n\nDólar\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nEdson Silva\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/atividade-2-onibus/index.html",
+    "href": "posts/atividade-2-onibus/index.html",
+    "title": "Regressão Linear: Estudo vs Salário",
+    "section": "",
+    "text": "Este post apresenta a análise de regressão linear gerada com Python.\n\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# 1. DADOS\ntry:\n    valores_x = np.loadtxt('X.txt')\n    valores_y = np.loadtxt('y.txt')\nexcept:\n    # Dados de exemplo (caso não leia o arquivo)\n    valores_x = np.array([2, 3, 4, 5, 6, 7, 8, 9, 10, 12])\n    valores_y = np.array([1200, 1400, 1700, 2100, 2500, 2900, 3400, 3800, 4200, 5000])\n\n# 2. CÁLCULOS (Matriz)\nX_matriz = np.column_stack((np.ones(len(valores_x)), valores_x))\nXt = X_matriz.T\n# Calcula a inversa e os coeficientes\nXtX_inv = np.linalg.inv(np.dot(Xt, X_matriz))\nbeta = np.dot(XtX_inv, np.dot(Xt, valores_y))\na, b = beta[0], beta[1]\n\n# 3. GRÁFICO (Usando Matplotlib - Mais seguro)\nplt.figure(figsize=(8, 5))\n\n# Pontos (Dados Reais)\nplt.scatter(valores_x, valores_y, color='blue', s=50, label='Dados Reais')\n\n# Reta (Regressão)\nplt.plot(valores_x, a + b * valores_x, color='red', linewidth=2, label='Regressão Linear')\n\n# Legendas e Títulos\nplt.title(f\"Regressão Linear (Intercepto={a:.2f}, Inclinação={b:.2f})\")\nplt.xlabel(\"Anos de Estudo\")\nplt.ylabel(\"Salário\")\nplt.legend()\nplt.grid(True, alpha=0.3)\n\n# Exibe o gráfico\nplt.show()"
   }
 ]
