@@ -3,6 +3,7 @@ title: "Regressão Linear: Estudo vs Salário"
 author: "Edson Silva"
 date: "2025-11-23"
 categories: [Regressão, dados]
+image: "regressao.jpg"
 jupyter: python3
 ---
 
