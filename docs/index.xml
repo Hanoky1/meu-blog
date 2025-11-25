@@ -540,7 +540,7 @@ if (outputEl) {{
 
  ]]></description>
   <category>Regressão</category>
-  <category>dados</category>
+  <category>Dados</category>
   <guid>https://your-website-url.example.com/posts/atividade-2-linear/</guid>
   <pubDate>Sun, 23 Nov 2025 00:00:00 GMT</pubDate>
   <media:content url="https://your-website-url.example.com/posts/atividade-2-linear/regressao.jpg" medium="image" type="image/jpeg"/>
@@ -772,10 +772,10 @@ font-style: inherit;"># Exibe o gráfico</span></span>
 
 
  ]]></description>
-  <category>news</category>
-  <category>code</category>
-  <category>analysis</category>
-  <category>transporte</category>
+  <category>Notícias</category>
+  <category>Programadores</category>
+  <category>Analistas</category>
+  <category>Transporte</category>
   <guid>https://your-website-url.example.com/posts/atividade-2-onibus/</guid>
   <pubDate>Sun, 23 Nov 2025 00:00:00 GMT</pubDate>
   <media:content url="https://your-website-url.example.com/posts/atividade-2-onibus/image.jpg" medium="image" type="image/jpeg"/>

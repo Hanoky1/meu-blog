@@ -1,8 +1,8 @@
 ---
-title: "Análise de Linhas e Paradas SPTrans"
+title: "Análise de linhas e paradas - SPTrans"
 author: "Edson Silva"
 date: "2025-11-23"
-categories: [news, code, analysis, transporte]
+categories: [Notícias, Programadores, Analistas, Transporte]
 image: "image.jpg"
 format: 
   html:
