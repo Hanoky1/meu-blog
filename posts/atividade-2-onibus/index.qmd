@@ -1,8 +1,8 @@
 ---
 title: "Regressão Linear: Estudo vs Salário"
-author: "Rafael Tasca"
+author: "Edson Silva"
 date: "2025-11-23"
-categories: [regressão, dados]
+categories: [Regressão, dados]
 jupyter: python3
 ---
 
