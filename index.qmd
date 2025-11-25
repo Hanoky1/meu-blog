@@ -8,11 +8,10 @@ listing:
   sort-ui: false
   filter-ui: false
   
-  # --- ESSA PARTE É CRUCIAL ---
-  fields: [date, title, reading-time, description, author]
-  # ----------------------------
+  # --- CORRIGIDO: Adicionei "image" no começo da lista ---
+  fields: [image, date, title, reading-time, description, author]
+  # -------------------------------------------------------
 
 page-layout: full
 title-block-banner: true
 ---
-
