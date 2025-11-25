@@ -6,3 +6,26 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+
+# --- ADICIONE DAQUI PARA BAIXO ---
+
+# 1. Autor
+author: "Edson Vinícius Brito da Silva"
+
+# 2. Índice Automático (TOC)
+# Cria um menu de navegação no lado direito do post
+toc: true
+toc-title: "Nesta página"
+
+# 3. Mostrar tempo de leitura?
+reading-time: true
+
+# 4. Ferramentas de Código
+# code-fold: true -> Esconde o código e deixa um botão "Show Code" (bom para não assustar quem não é dev)
+# code-tools: true -> Adiciona um menu para ver o código fonte completo
+code-fold: show
+code-tools: true
+
+# 5. Formato da data (Brasileiro)
+date-format: "DD/MM/YYYY"
+lang: pt-BR

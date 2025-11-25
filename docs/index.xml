@@ -23,6 +23,8 @@
 
 <p>Este post apresenta a análise de regressão linear gerada com Python.</p>
 <div id="92828dbe" class="cell" data-execution_count="1">
+<details open="" class="code-fold">
+<summary>Código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
@@ -224,6 +226,7 @@ font-style: inherit;">0.3</span>)</span>
 background-color: null;
 font-style: inherit;"># Exibe o gráfico</span></span>
 <span id="cb1-39">plt.show()</span></code></pre></div></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -233,6 +236,8 @@ font-style: inherit;"># Exibe o gráfico</span></span>
 </div>
 </div>
 
+
+<!-- -->
 
 
  ]]></description>
@@ -254,6 +259,8 @@ font-style: inherit;"># Exibe o gráfico</span></span>
 
 <p>Neste post irei mostrar como desenvolver uma função em python que irá se conectar com a API do Banco Central. Esta função utilizará uma consulta que trará a consulta do valor do dólar no mês referente</p>
 <div id="22e11750" class="cell" data-execution_count="1">
+<details open="" class="code-fold">
+<summary>Código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> requests</span>
@@ -731,6 +738,7 @@ font-style: inherit;">"052025"</span></span>
 background-color: null;
 font-style: inherit;">=</span> f(periodo)</span>
 <span id="cb1-111">fig.show()</span></code></pre></div></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Buscando cotações de 01/05/2025 a 31/05/2025...
 Gráfico gerado com sucesso! Total de dias: 30</code></pre>
@@ -765,6 +773,8 @@ if (outputEl) {{
 </div>
 </div>
 
+
+<!-- -->
 
 
  ]]></description>
