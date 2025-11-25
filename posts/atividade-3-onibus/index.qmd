@@ -1,0 +1,110 @@
+---
+title: "Análise de linhas e paradas - SPTrans"
+author: "Edson"
+date: "2025-11-23"
+categories: [Notícias, Programadores, Analistas, Transporte]
+image: "onibus.jpg"
+format: 
+  html:
+    code-fold: false
+    code-tools: true
+---
+
+## Introdução
+
+Este documento apresenta uma análise das linhas de ônibus da SPTrans na região da Lapa, utilizando a API Olho Vivo. O código busca informações sobre linhas, paradas e posições dos veículos, gerando visualizações interativas em mapa.
+
+## Configuração e Autenticação
+
+Primeiro, realizamos a autenticação na API SPTrans e buscamos as linhas disponíveis na região da Lapa.
+
+```{python}
+import os
+import requests
+import json
+from dotenv import load_dotenv
+from folium import Map, Marker
+
+# Carrega variáveis de ambiente
+load_dotenv(".env")
+
+# Inicia sessão e autentica na API
+s = requests.Session()
+res = s.post(
+    f"http://api.olhovivo.sptrans.com.br/v2.1/Login/Autenticar?token={os.getenv('SPTRANS_TOKEN')}"
+)
+print(f"Status da autenticação: {res.text}")
+```
+
+## Busca de Linhas na Lapa
+
+Agora buscamos todas as linhas que passam pela região da Lapa.
+
+```{python}
+# Busca linhas na região da Lapa
+linhas_lapa = s.get(
+    "http://api.olhovivo.sptrans.com.br/v2.1/Linha/Buscar?termosBusca=Lapa"
+)
+linhas_lapa = linhas_lapa.json()
+
+# Exibe as 3 primeiras linhas
+print(f"Total de linhas encontradas: {len(linhas_lapa)}")
+print("\nPrimeiras 3 linhas:")
+for linha in linhas_lapa[:3]:
+    print(f"- {linha}")
+```
+
+## Mapeamento de Paradas
+
+Buscamos as paradas da linha 2506 e criamos um mapa interativo com todas as paradas.
+
+```{python}
+# Busca paradas da linha 2506
+res = s.get(
+    "http://api.olhovivo.sptrans.com.br/v2.1/Parada/BuscarParadasPorLinha?codigoLinha=2506"
+)
+paradas = res.json()
+
+print(f"Total de paradas encontradas: {len(paradas)}")
+print("\nPrimeiras 3 paradas:")
+for parada in paradas[:3]:
+    print(f"- {parada}")
+```
+
+## Visualização das Paradas no Mapa
+
+Criamos um mapa interativo com todas as paradas da linha.
+
+```{python}
+# Cria mapa centrado na primeira parada
+m = Map(location=[paradas[3]["py"], paradas[3]["px"]], zoom_start=14)
+
+# Adiciona marcador para cada parada
+for i in paradas:
+    Marker(location=[i["py"], i["px"]], popup=i["np"]).add_to(m)
+
+# Salva o mapa
+m.save("2506.html")
+print("Mapa salvo como '2506.html'")
+
+# Exibe o mapa
+m
+```
+
+## Posição em Tempo Real dos Veículos
+
+Consultamos a posição atual dos veículos da linha.
+
+```{python}
+# Busca posição dos veículos
+pos = s.get(
+    "http://api.olhovivo.sptrans.com.br/v2.1//Posicao/Linha?codigoLinha=2506"
+)
+posicoes = pos.json()
+
+print(f"Dados de posição: {posicoes}")
+```
+
+## Conclusão
+
+Este documento demonstra como utilizar a API Olho Vivo da SPTrans para obter informações sobre transporte público em São Paulo, incluindo linhas, paradas e posicionamento em tempo real dos veículos.

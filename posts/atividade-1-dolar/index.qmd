@@ -1,6 +1,6 @@
 ---
 title: "Consulta do dólar"
-author: "Edson Silva"
+author: "Edson Brito"
 date: "2025-11-23"
 categories: [Notícias, Dólar]
 image: "dolar.jpg"
