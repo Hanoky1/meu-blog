@@ -1,0 +1,50 @@
+---
+title: "Regressão Linear: Estudo vs Salário"
+author: "Rafael Tasca"
+date: "2025-11-23"
+categories: [regressão, dados]
+jupyter: python3
+---
+
+Este post apresenta a análise de regressão linear gerada com Python.
+```{python}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1. DADOS
+try:
+    valores_x = np.loadtxt('X.txt')
+    valores_y = np.loadtxt('y.txt')
+except:
+    # Dados de exemplo (caso não leia o arquivo)
+    valores_x = np.array([2, 3, 4, 5, 6, 7, 8, 9, 10, 12])
+    valores_y = np.array([1200, 1400, 1700, 2100, 2500, 2900, 3400, 3800, 4200, 5000])
+
+# 2. CÁLCULOS (Matriz)
+X_matriz = np.column_stack((np.ones(len(valores_x)), valores_x))
+Xt = X_matriz.T
+# Calcula a inversa e os coeficientes
+XtX_inv = np.linalg.inv(np.dot(Xt, X_matriz))
+beta = np.dot(XtX_inv, np.dot(Xt, valores_y))
+a, b = beta[0], beta[1]
+
+# 3. GRÁFICO (Usando Matplotlib - Mais seguro)
+plt.figure(figsize=(8, 5))
+
+# Pontos (Dados Reais)
+plt.scatter(valores_x, valores_y, color='blue', s=50, label='Dados Reais')
+
+# Reta (Regressão)
+plt.plot(valores_x, a + b * valores_x, color='red', linewidth=2, label='Regressão Linear')
+
+# Legendas e Títulos
+plt.title(f"Regressão Linear (Intercepto={a:.2f}, Inclinação={b:.2f})")
+plt.xlabel("Anos de Estudo")
+plt.ylabel("Salário")
+plt.legend()
+plt.grid(True, alpha=0.3)
+
+# Exibe o gráfico
+plt.show()
+```

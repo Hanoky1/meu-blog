@@ -1,0 +1,125 @@
+---
+title: "Consulta do dólar"
+author: "Edson Silva"
+date: "2025-11-23"
+categories: [Notícias, Dólar]
+image: "dolar.jpg"
+jupyter: python3
+---
+
+Neste post irei mostrar como desenvolver uma função em python que irá se conectar com a API do Banco Central. Esta função utilizará uma consulta que trará a consulta do valor do dólar no mês referente
+
+```{python}
+import requests
+import calendar
+from datetime import datetime, timedelta
+import plotly.graph_objects as go
+
+
+def f(periodo):
+    """
+    Busca cotação do dólar para um período (MMYYYY) e gera gráfico.
+    
+    Args:
+        periodo: String no formato "MMYYYY" (ex: "052025")
+        
+    Returns:
+        Figura do Plotly com gráfico de linha da cotação
+    """
+    first_date = datetime.strptime(periodo, "%m%Y")
+    last_date = first_date.replace(
+        day=calendar.monthrange(first_date.year, first_date.month)[1]
+    )
+    
+    data_inicial = first_date.strftime("%m-%d-%Y")
+    data_final = last_date.strftime("%m-%d-%Y")
+    
+    url = f"https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial='{data_inicial}'&@dataFinalCotacao='{data_final}'&$format=json"
+    
+    print(f"Buscando cotações de {first_date.strftime('%d/%m/%Y')} a {last_date.strftime('%d/%m/%Y')}...")
+    
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Erro ao buscar dados: {e}")
+        return None
+    
+    cotacoes = data.get('value', [])
+    
+    if not cotacoes:
+        print("Nenhuma cotação encontrada para este período.")
+        return None
+    
+    cotacoes_dict = {}
+    for cotacao in cotacoes:
+        data_cotacao = datetime.strptime(cotacao['dataHoraCotacao'], "%Y-%m-%d %H:%M:%S.%f")
+        cotacoes_dict[data_cotacao.date()] = {
+            'compra': cotacao['cotacaoCompra'],
+            'venda': cotacao['cotacaoVenda']
+        }
+    
+    datas = []
+    valores_compra = []
+    valores_venda = []
+    
+    current_date = first_date
+    ultima_cotacao = None
+    
+    while current_date <= last_date:
+        date_key = current_date.date()
+        
+        if date_key in cotacoes_dict:
+            ultima_cotacao = cotacoes_dict[date_key]
+        
+        if ultima_cotacao:
+            datas.append(current_date)
+            valores_compra.append(ultima_cotacao['compra'])
+            valores_venda.append(ultima_cotacao['venda'])
+        
+        current_date += timedelta(days=1)
+    
+    fig = go.Figure()
+    
+    fig.add_trace(go.Scatter(
+        x=datas,
+        y=valores_compra,
+        mode='lines+markers',
+        name='Cotação Compra',
+        line=dict(color='blue', width=2),
+        marker=dict(size=4)
+    ))
+    
+    fig.add_trace(go.Scatter(
+        x=datas,
+        y=valores_venda,
+        mode='lines+markers',
+        name='Cotação Venda',
+        line=dict(color='red', width=2),
+        marker=dict(size=4)
+    ))
+    
+    mes_nome = first_date.strftime("%B").capitalize()
+    ano = first_date.year
+    
+    fig.update_layout(
+        title=f'Cotação do Dólar - {mes_nome} de {ano}',
+        xaxis_title='Data',
+        yaxis_title='Cotação (R$)',
+        hovermode='x unified',
+        template='plotly_white',
+        xaxis=dict(tickformat='%d/%m'),
+        height=600
+    )
+    
+    print(f"Gráfico gerado com sucesso! Total de dias: {len(datas)}")
+    
+    return fig
+
+
+periodo = "052025"
+fig = f(periodo)
+fig.show()
+
+```
