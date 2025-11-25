@@ -3,7 +3,7 @@ title: "Análise de linhas e paradas - SPTrans"
 author: "Edson Silva"
 date: "2025-11-23"
 categories: [Notícias, Programadores, Analistas, Transporte]
-image: "image.jpg"
+image: "onibus.jpg"
 format: 
   html:
     code-fold: false

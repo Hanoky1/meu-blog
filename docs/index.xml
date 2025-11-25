@@ -778,7 +778,7 @@ font-style: inherit;"># Exibe o gráfico</span></span>
   <category>Transporte</category>
   <guid>https://your-website-url.example.com/posts/atividade-2-onibus/</guid>
   <pubDate>Sun, 23 Nov 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://your-website-url.example.com/posts/atividade-2-onibus/image.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://your-website-url.example.com/posts/atividade-2-onibus/onibus.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Consulta do dólar</title>
