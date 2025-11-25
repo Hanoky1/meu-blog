@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "Engenharia de computação 🖥️",
     "section": "",
-    "text": "Regressão Linear: Estudo vs Salário\n\n\n\nregressão\n\ndados\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nRafael Tasca\n\n\n\n\n\n\n\n\n\n\n\n\nConsulta do dólar\n\n\n\nNotícias\n\nDólar\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nEdson Silva\n\n\n\n\n\nNo matching items"
+    "text": "Regressão Linear: Estudo vs Salário\n\n\n\nRegressão\n\ndados\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nEdson\n\n\n\n\n\n\n\n\n\n\n\n\nConsulta do dólar\n\n\n\nNotícias\n\nDólar\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nEdson\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -21,10 +21,59 @@
     "text": "About this blog"
   },
   {
-    "objectID": "posts/atividade-2-onibus/index.html",
-    "href": "posts/atividade-2-onibus/index.html",
-    "title": "Regressão Linear: Estudo vs Salário",
+    "objectID": "posts/atividade-2-linear/index.html",
+    "href": "posts/atividade-2-linear/index.html",
+    "title": "Regressão Linear: Anos de Estudo vs Salário",
     "section": "",
-    "text": "Este post apresenta a análise de regressão linear gerada com Python.\n\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# 1. DADOS\ntry:\n    valores_x = np.loadtxt('X.txt')\n    valores_y = np.loadtxt('y.txt')\nexcept:\n    # Dados de exemplo (caso não leia o arquivo)\n    valores_x = np.array([2, 3, 4, 5, 6, 7, 8, 9, 10, 12])\n    valores_y = np.array([1200, 1400, 1700, 2100, 2500, 2900, 3400, 3800, 4200, 5000])\n\n# 2. CÁLCULOS (Matriz)\nX_matriz = np.column_stack((np.ones(len(valores_x)), valores_x))\nXt = X_matriz.T\n# Calcula a inversa e os coeficientes\nXtX_inv = np.linalg.inv(np.dot(Xt, X_matriz))\nbeta = np.dot(XtX_inv, np.dot(Xt, valores_y))\na, b = beta[0], beta[1]\n\n# 3. GRÁFICO (Usando Matplotlib - Mais seguro)\nplt.figure(figsize=(8, 5))\n\n# Pontos (Dados Reais)\nplt.scatter(valores_x, valores_y, color='blue', s=50, label='Dados Reais')\n\n# Reta (Regressão)\nplt.plot(valores_x, a + b * valores_x, color='red', linewidth=2, label='Regressão Linear')\n\n# Legendas e Títulos\nplt.title(f\"Regressão Linear (Intercepto={a:.2f}, Inclinação={b:.2f})\")\nplt.xlabel(\"Anos de Estudo\")\nplt.ylabel(\"Salário\")\nplt.legend()\nplt.grid(True, alpha=0.3)\n\n# Exibe o gráfico\nplt.show()"
+    "text": "Este documento apresenta uma análise completa de regressão linear para investigar a relação entre anos de estudo e salário. Utilizamos álgebra linear e a fórmula matricial para calcular os coeficientes da regressão de forma eficiente."
+  },
+  {
+    "objectID": "posts/atividade-2-linear/index.html#introdução",
+    "href": "posts/atividade-2-linear/index.html#introdução",
+    "title": "Regressão Linear: Anos de Estudo vs Salário",
+    "section": "",
+    "text": "Este documento apresenta uma análise completa de regressão linear para investigar a relação entre anos de estudo e salário. Utilizamos álgebra linear e a fórmula matricial para calcular os coeficientes da regressão de forma eficiente."
+  },
+  {
+    "objectID": "posts/atividade-2-linear/index.html#fundamentação-teórica",
+    "href": "posts/atividade-2-linear/index.html#fundamentação-teórica",
+    "title": "Regressão Linear: Anos de Estudo vs Salário",
+    "section": "Fundamentação Teórica",
+    "text": "Fundamentação Teórica\nA regressão linear busca encontrar a melhor reta que se ajusta aos dados, minimizando a soma dos quadrados dos resíduos. A equação da reta é:\n\\[y = a + bx\\]\nUsando a notação matricial, os coeficientes são calculados por:\n\\[\\beta = (X^T X)^{-1} X^T y\\]"
+  },
+  {
+    "objectID": "posts/atividade-2-linear/index.html#dados-de-exemplo",
+    "href": "posts/atividade-2-linear/index.html#dados-de-exemplo",
+    "title": "Regressão Linear: Anos de Estudo vs Salário",
+    "section": "Dados de Exemplo",
+    "text": "Dados de Exemplo\nPrimeiro, vamos criar dados de exemplo para a análise:\n\nimport numpy as np\nimport plotly.graph_objects as go\n\n# Dados de exemplo: Anos de estudo e Salários correspondentes\ndados_x = [8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20]\ndados_y = [2000, 2500, 2700, 3000, 3200, 3500, 3800, 4000, 4300, 4500, 5000]\n\nprint(\"Dados carregados:\")\nprint(f\"Anos de estudo: {dados_x}\")\nprint(f\"Salários: {dados_y}\")\n\nDados carregados:\nAnos de estudo: [8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20]\nSalários: [2000, 2500, 2700, 3000, 3200, 3500, 3800, 4000, 4300, 4500, 5000]"
+  },
+  {
+    "objectID": "posts/atividade-2-linear/index.html#código-de-análise",
+    "href": "posts/atividade-2-linear/index.html#código-de-análise",
+    "title": "Regressão Linear: Anos de Estudo vs Salário",
+    "section": "Código de Análise",
+    "text": "Código de Análise\nAbaixo está a implementação completa da função de regressão linear:\n\ndef f(x_data, y_data):\n    \"\"\"\n    Calcula regressão linear usando fórmula matricial e gera gráfico.\n    \n    Args:\n        x_data: Lista ou array com anos de estudo\n        y_data: Lista ou array com salários\n        \n    Returns:\n        Tupla com (coeficientes [a, b], figura do Plotly)\n    \"\"\"\n    x = np.array(x_data)\n    y = np.array(y_data)\n    \n    n = len(x)\n    X = np.column_stack([np.ones(n), x])\n    \n    # Cálculo usando fórmula matricial\n    beta = np.linalg.inv(X.T @ X) @ X.T @ y\n    \n    a = beta[0]\n    b = beta[1]\n    \n    y_pred = a + b * x\n    \n    # Criação do gráfico interativo\n    fig = go.Figure()\n    \n    fig.add_trace(go.Scatter(\n        x=x,\n        y=y,\n        mode='markers',\n        name='Dados Observados',\n        marker=dict(size=10, color='blue')\n    ))\n    \n    fig.add_trace(go.Scatter(\n        x=x,\n        y=y_pred,\n        mode='lines',\n        name=f'Regressão: y = {a:.2f} + {b:.2f}x',\n        line=dict(color='red', width=2)\n    ))\n    \n    fig.update_layout(\n        title='Relação entre Anos de Estudo e Salário',\n        xaxis_title='Anos de Estudo',\n        yaxis_title='Salário (R$)',\n        hovermode='closest',\n        template='plotly_white',\n        showlegend=True,\n        height=500\n    )\n    \n    return [a, b], fig"
+  },
+  {
+    "objectID": "posts/atividade-2-linear/index.html#execução-e-resultados",
+    "href": "posts/atividade-2-linear/index.html#execução-e-resultados",
+    "title": "Regressão Linear: Anos de Estudo vs Salário",
+    "section": "Execução e Resultados",
+    "text": "Execução e Resultados\nAgora executamos a análise com os dados de exemplo:\n\n# Executa a regressão com os dados\ncoeficientes, fig = f(dados_x, dados_y)\na, b = coeficientes\n\nprint(f\"\\n{'='*50}\")\nprint(f\"RESULTADOS DA REGRESSÃO LINEAR\")\nprint(f\"{'='*50}\")\nprint(f\"Intercepto (a): {a:.4f}\")\nprint(f\"Coeficiente Angular (b): {b:.4f}\")\nprint(f\"\\nEquação da reta: y = {a:.4f} + {b:.4f}x\")\nprint(f\"{'='*50}\\n\")\n\n# Exibe o gráfico interativo\nfig.show()\n\n\n==================================================\nRESULTADOS DA REGRESSÃO LINEAR\n==================================================\nIntercepto (a): -42.4242\nCoeficiente Angular (b): 253.0303\n\nEquação da reta: y = -42.4242 + 253.0303x\n=================================================="
+  },
+  {
+    "objectID": "posts/atividade-2-linear/index.html#interpretação",
+    "href": "posts/atividade-2-linear/index.html#interpretação",
+    "title": "Regressão Linear: Anos de Estudo vs Salário",
+    "section": "Interpretação",
+    "text": "Interpretação\n\nCoeficientes\n\nIntercepto (a): Representa o salário base estimado quando os anos de estudo são zero\nCoeficiente Angular (b): Indica o aumento médio no salário para cada ano adicional de estudo\n\n\n\nVisualização\nO gráfico interativo acima mostra:\n\nPontos azuis: Dados reais observados\nLinha vermelha: Modelo de regressão ajustado\n\nA proximidade dos pontos à linha indica a qualidade do ajuste do modelo."
+  },
+  {
+    "objectID": "posts/atividade-2-linear/index.html#conclusão",
+    "href": "posts/atividade-2-linear/index.html#conclusão",
+    "title": "Regressão Linear: Anos de Estudo vs Salário",
+    "section": "Conclusão",
+    "text": "Conclusão\nA análise de regressão linear fornece uma ferramenta poderosa para entender e quantificar a relação entre educação e renda, permitindo fazer previsões e tomar decisões baseadas em dados."
   }
 ]

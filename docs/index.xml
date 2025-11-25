@@ -12,238 +12,542 @@
 <generator>quarto-1.8.26</generator>
 <lastBuildDate>Sun, 23 Nov 2025 00:00:00 GMT</lastBuildDate>
 <item>
-  <title>Regressão Linear: Estudo vs Salário</title>
-  <dc:creator>Rafael Tasca</dc:creator>
-  <link>https://your-website-url.example.com/posts/atividade-2-onibus/</link>
+  <title>Regressão Linear: Anos de Estudo vs Salário</title>
+  <dc:creator>Edson </dc:creator>
+  <link>https://your-website-url.example.com/posts/atividade-2-linear/</link>
   <description><![CDATA[ 
 
 
 
 
 
-<p>Este post apresenta a análise de regressão linear gerada com Python.</p>
-<div id="a9454c89" class="cell" data-execution_count="1">
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+<p>Este documento apresenta uma análise completa de regressão linear para investigar a relação entre anos de estudo e salário. Utilizamos álgebra linear e a fórmula matricial para calcular os coeficientes da regressão de forma eficiente.</p>
+</section>
+<section id="fundamentação-teórica" class="level2">
+<h2 class="anchored" data-anchor-id="fundamentação-teórica">Fundamentação Teórica</h2>
+<p>A regressão linear busca encontrar a melhor reta que se ajusta aos dados, minimizando a soma dos quadrados dos resíduos. A equação da reta é:</p>
+<p><img src="https://latex.codecogs.com/png.latex?y%20=%20a%20+%20bx"></p>
+<p>Usando a notação matricial, os coeficientes são calculados por:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%20(X%5ET%20X)%5E%7B-1%7D%20X%5ET%20y"></p>
+</section>
+<section id="dados-de-exemplo" class="level2">
+<h2 class="anchored" data-anchor-id="dados-de-exemplo">Dados de Exemplo</h2>
+<p>Primeiro, vamos criar dados de exemplo para a análise:</p>
+<div id="5e0bdd92" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">as</span> pd</span>
-<span id="cb1-2"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> np</span>
-<span id="cb1-3"><span class="im" style="color: #00769E;
+<span id="cb1-2"><span class="im" style="color: #00769E;
 background-color: null;
-font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+font-style: inherit;">import</span> plotly.graph_objects <span class="im" style="color: #00769E;
 background-color: null;
-font-style: inherit;">as</span> plt</span>
-<span id="cb1-4"></span>
-<span id="cb1-5"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">as</span> go</span>
+<span id="cb1-3"></span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># 1. DADOS</span></span>
-<span id="cb1-6"><span class="cf" style="color: #003B4F;
+font-style: inherit;"># Dados de exemplo: Anos de estudo e Salários correspondentes</span></span>
+<span id="cb1-5">dados_x <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-weight: bold;
-font-style: inherit;">try</span>:</span>
-<span id="cb1-7">    valores_x <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> np.loadtxt(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'X.txt'</span>)</span>
-<span id="cb1-8">    valores_y <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> np.loadtxt(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'y.txt'</span>)</span>
-<span id="cb1-9"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">except</span>:</span>
-<span id="cb1-10">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Dados de exemplo (caso não leia o arquivo)</span></span>
-<span id="cb1-11">    valores_x <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> np.array([<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">6</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">7</span>, <span class="dv" style="color: #AD0000;
+font-style: inherit;">=</span> [<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">8</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">9</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">12</span>])</span>
-<span id="cb1-12">    valores_y <span class="op" style="color: #5E5E5E;
+font-style: inherit;">11</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">=</span> np.array([<span class="dv" style="color: #AD0000;
+font-style: inherit;">12</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1200</span>, <span class="dv" style="color: #AD0000;
+font-style: inherit;">13</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1400</span>, <span class="dv" style="color: #AD0000;
+font-style: inherit;">14</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1700</span>, <span class="dv" style="color: #AD0000;
+font-style: inherit;">15</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">2100</span>, <span class="dv" style="color: #AD0000;
+font-style: inherit;">16</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">17</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">18</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>]</span>
+<span id="cb1-6">dados_y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2000</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2500</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">2900</span>, <span class="dv" style="color: #AD0000;
+font-style: inherit;">2700</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">3400</span>, <span class="dv" style="color: #AD0000;
+font-style: inherit;">3000</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3200</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3500</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3800</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">4200</span>, <span class="dv" style="color: #AD0000;
+font-style: inherit;">4000</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">5000</span>])</span>
-<span id="cb1-13"></span>
-<span id="cb1-14"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">4300</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;"># 2. CÁLCULOS (Matriz)</span></span>
-<span id="cb1-15">X_matriz <span class="op" style="color: #5E5E5E;
+font-style: inherit;">4500</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">=</span> np.column_stack((np.ones(<span class="bu" style="color: null;
+font-style: inherit;">5000</span>]</span>
+<span id="cb1-7"></span>
+<span id="cb1-8"><span class="bu" style="color: null;
 background-color: null;
-font-style: inherit;">len</span>(valores_x)), valores_x))</span>
-<span id="cb1-16">Xt <span class="op" style="color: #5E5E5E;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">=</span> X_matriz.T</span>
-<span id="cb1-17"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">"Dados carregados:"</span>)</span>
+<span id="cb1-9"><span class="bu" style="color: null;
 background-color: null;
-font-style: inherit;"># Calcula a inversa e os coeficientes</span></span>
-<span id="cb1-18">XtX_inv <span class="op" style="color: #5E5E5E;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
 background-color: null;
-font-style: inherit;">=</span> np.linalg.inv(np.dot(Xt, X_matriz))</span>
-<span id="cb1-19">beta <span class="op" style="color: #5E5E5E;
+font-style: inherit;">f"Anos de estudo: </span><span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> np.dot(XtX_inv, np.dot(Xt, valores_y))</span>
-<span id="cb1-20">a, b <span class="op" style="color: #5E5E5E;
+font-style: inherit;">{</span>dados_x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb1-10"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Salários: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>dados_y<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dados carregados:
+Anos de estudo: [8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20]
+Salários: [2000, 2500, 2700, 3000, 3200, 3500, 3800, 4000, 4300, 4500, 5000]</code></pre>
+</div>
+</div>
+</section>
+<section id="código-de-análise" class="level2">
+<h2 class="anchored" data-anchor-id="código-de-análise">Código de Análise</h2>
+<p>Abaixo está a implementação completa da função de regressão linear:</p>
+<div id="168e44d7" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> f(x_data, y_data):</span>
+<span id="cb3-2">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">"""</span></span>
+<span id="cb3-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    Calcula regressão linear usando fórmula matricial e gera gráfico.</span></span>
+<span id="cb3-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    </span></span>
+<span id="cb3-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    Args:</span></span>
+<span id="cb3-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">        x_data: Lista ou array com anos de estudo</span></span>
+<span id="cb3-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">        y_data: Lista ou array com salários</span></span>
+<span id="cb3-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">        </span></span>
+<span id="cb3-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    Returns:</span></span>
+<span id="cb3-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">        Tupla com (coeficientes [a, b], figura do Plotly)</span></span>
+<span id="cb3-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    """</span></span>
+<span id="cb3-12">    x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.array(x_data)</span>
+<span id="cb3-13">    y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.array(y_data)</span>
+<span id="cb3-14">    </span>
+<span id="cb3-15">    n <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(x)</span>
+<span id="cb3-16">    X <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.column_stack([np.ones(n), x])</span>
+<span id="cb3-17">    </span>
+<span id="cb3-18">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Cálculo usando fórmula matricial</span></span>
+<span id="cb3-19">    beta <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.linalg.inv(X.T <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> X) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> X.T <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> y</span>
+<span id="cb3-20">    </span>
+<span id="cb3-21">    a <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> beta[<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0</span>], beta[<span class="dv" style="color: #AD0000;
+font-style: inherit;">0</span>]</span>
+<span id="cb3-22">    b <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> beta[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>]</span>
-<span id="cb1-21"></span>
-<span id="cb1-22"><span class="co" style="color: #5E5E5E;
+<span id="cb3-23">    </span>
+<span id="cb3-24">    y_pred <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># 3. GRÁFICO (Usando Matplotlib - Mais seguro)</span></span>
-<span id="cb1-23">plt.figure(figsize<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">8</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">5</span>))</span>
-<span id="cb1-24"></span>
-<span id="cb1-25"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Pontos (Dados Reais)</span></span>
-<span id="cb1-26">plt.scatter(valores_x, valores_y, color<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'blue'</span>, s<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">50</span>, label<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'Dados Reais'</span>)</span>
-<span id="cb1-27"></span>
-<span id="cb1-28"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Reta (Regressão)</span></span>
-<span id="cb1-29">plt.plot(valores_x, a <span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> a <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> b <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">*</span> valores_x, color<span class="op" style="color: #5E5E5E;
+font-style: inherit;">*</span> x</span>
+<span id="cb3-25">    </span>
+<span id="cb3-26">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Criação do gráfico interativo</span></span>
+<span id="cb3-27">    fig <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> go.Figure()</span>
+<span id="cb3-28">    </span>
+<span id="cb3-29">    fig.add_trace(go.Scatter(</span>
+<span id="cb3-30">        x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>x,</span>
+<span id="cb3-31">        y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>y,</span>
+<span id="cb3-32">        mode<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'red'</span>, linewidth<span class="op" style="color: #5E5E5E;
+font-style: inherit;">'markers'</span>,</span>
+<span id="cb3-33">        name<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Dados Observados'</span>,</span>
+<span id="cb3-34">        marker<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">dict</span>(size<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">2</span>, label<span class="op" style="color: #5E5E5E;
+font-style: inherit;">10</span>, color<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'Regressão Linear'</span>)</span>
-<span id="cb1-30"></span>
-<span id="cb1-31"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">'blue'</span>)</span>
+<span id="cb3-35">    ))</span>
+<span id="cb3-36">    </span>
+<span id="cb3-37">    fig.add_trace(go.Scatter(</span>
+<span id="cb3-38">        x<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Legendas e Títulos</span></span>
-<span id="cb1-32">plt.title(<span class="ss" style="color: #20794D;
+font-style: inherit;">=</span>x,</span>
+<span id="cb3-39">        y<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">f"Regressão Linear (Intercepto=</span><span class="sc" style="color: #5E5E5E;
+font-style: inherit;">=</span>y_pred,</span>
+<span id="cb3-40">        mode<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'lines'</span>,</span>
+<span id="cb3-41">        name<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f'Regressão: y = </span><span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">{</span>a<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
 background-color: null;
-font-style: inherit;">, Inclinação=</span><span class="sc" style="color: #5E5E5E;
+font-style: inherit;"> + </span><span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">{</span>b<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
 background-color: null;
-font-style: inherit;">)"</span>)</span>
-<span id="cb1-33">plt.xlabel(<span class="st" style="color: #20794D;
+font-style: inherit;">x'</span>,</span>
+<span id="cb3-42">        line<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">"Anos de Estudo"</span>)</span>
-<span id="cb1-34">plt.ylabel(<span class="st" style="color: #20794D;
+font-style: inherit;">=</span><span class="bu" style="color: null;
 background-color: null;
-font-style: inherit;">"Salário"</span>)</span>
-<span id="cb1-35">plt.legend()</span>
-<span id="cb1-36">plt.grid(<span class="va" style="color: #111111;
+font-style: inherit;">dict</span>(color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">True</span>, alpha<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+font-style: inherit;">'red'</span>, width<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">0.3</span>)</span>
-<span id="cb1-37"></span>
-<span id="cb1-38"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;"># Exibe o gráfico</span></span>
-<span id="cb1-39">plt.show()</span></code></pre></div></div>
+font-style: inherit;">2</span>)</span>
+<span id="cb3-43">    ))</span>
+<span id="cb3-44">    </span>
+<span id="cb3-45">    fig.update_layout(</span>
+<span id="cb3-46">        title<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Relação entre Anos de Estudo e Salário'</span>,</span>
+<span id="cb3-47">        xaxis_title<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Anos de Estudo'</span>,</span>
+<span id="cb3-48">        yaxis_title<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Salário (R$)'</span>,</span>
+<span id="cb3-49">        hovermode<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'closest'</span>,</span>
+<span id="cb3-50">        template<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'plotly_white'</span>,</span>
+<span id="cb3-51">        showlegend<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>,</span>
+<span id="cb3-52">        height<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">500</span></span>
+<span id="cb3-53">    )</span>
+<span id="cb3-54">    </span>
+<span id="cb3-55">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> [a, b], fig</span></code></pre></div></div>
+</div>
+</section>
+<section id="execução-e-resultados" class="level2">
+<h2 class="anchored" data-anchor-id="execução-e-resultados">Execução e Resultados</h2>
+<p>Agora executamos a análise com os dados de exemplo:</p>
+<div id="bfd4f1a5" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Executa a regressão com os dados</span></span>
+<span id="cb4-2">coeficientes, fig <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> f(dados_x, dados_y)</span>
+<span id="cb4-3">a, b <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> coeficientes</span>
+<span id="cb4-4"></span>
+<span id="cb4-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'='</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb4-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"RESULTADOS DA REGRESSÃO LINEAR"</span>)</span>
+<span id="cb4-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'='</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb4-8"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Intercepto (a): </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>a<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.4f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb4-9"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Coeficiente Angular (b): </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>b<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.4f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb4-10"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Equação da reta: y = </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>a<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.4f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> + </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>b<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.4f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">x"</span>)</span>
+<span id="cb4-11"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'='</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb4-12"></span>
+<span id="cb4-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Exibe o gráfico interativo</span></span>
+<span id="cb4-14">fig.show()</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+==================================================
+RESULTADOS DA REGRESSÃO LINEAR
+==================================================
+Intercepto (a): -42.4242
+Coeficiente Angular (b): 253.0303
+
+Equação da reta: y = -42.4242 + 253.0303x
+==================================================
+</code></pre>
+</div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/atividade-2-onibus/index_files/figure-html/cell-2-output-1.png" width="676" height="450" class="figure-img"></p>
-</figure>
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.2.0.min.js" integrity="sha256-iZ2u/oU2wf/vDbl/ChcX93WgbBRSBvUO6N413hDz7xM=" crossorigin="anonymous"></script>                <div id="0f8f2813-250e-48c0-b034-486ad5f1150d" class="plotly-graph-div" style="height:500px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("0f8f2813-250e-48c0-b034-486ad5f1150d")) {                    Plotly.newPlot(                        "0f8f2813-250e-48c0-b034-486ad5f1150d",                        [{"marker":{"color":"blue","size":10},"mode":"markers","name":"Dados Observados","x":{"dtype":"i1","bdata":"CAoLDA0ODxAREhQ="},"y":{"dtype":"i2","bdata":"0AfECYwKuAuADKwN2A6gD8wQlBGIEw=="},"type":"scatter"},{"line":{"color":"red","width":2},"mode":"lines","name":"Regress\u00e3o: y = -42.42 + 253.03x","x":{"dtype":"i1","bdata":"CAoLDA0ODxAREhQ="},"y":{"dtype":"f8","bdata":"DV100UX3nkADH3zwwW+jQEEXXXTRaaVAfw8++OBjp0C9Bx988F2pQPv\u002f\u002f\u002f\u002f\u002fV6tAOfjggw9SrUB38MEHH0yvQFt00UUXo7BAevDBBx+gsUC46KKLLpqzQA=="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"title":{"text":"Rela\u00e7\u00e3o entre Anos de Estudo e Sal\u00e1rio"},"xaxis":{"title":{"text":"Anos de Estudo"}},"yaxis":{"title":{"text":"Sal\u00e1rio (R$)"}},"hovermode":"closest","showlegend":true,"height":500},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('0f8f2813-250e-48c0-b034-486ad5f1150d');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
 </div>
 </div>
-</div>
+</section>
+<section id="interpretação" class="level2">
+<h2 class="anchored" data-anchor-id="interpretação">Interpretação</h2>
+<section id="coeficientes" class="level3">
+<h3 class="anchored" data-anchor-id="coeficientes">Coeficientes</h3>
+<ul>
+<li><strong>Intercepto (a)</strong>: Representa o salário base estimado quando os anos de estudo são zero</li>
+<li><strong>Coeficiente Angular (b)</strong>: Indica o aumento médio no salário para cada ano adicional de estudo</li>
+</ul>
+</section>
+<section id="visualização" class="level3">
+<h3 class="anchored" data-anchor-id="visualização">Visualização</h3>
+<p>O gráfico interativo acima mostra:</p>
+<ul>
+<li><strong>Pontos azuis</strong>: Dados reais observados</li>
+<li><strong>Linha vermelha</strong>: Modelo de regressão ajustado</li>
+</ul>
+<p>A proximidade dos pontos à linha indica a qualidade do ajuste do modelo.</p>
+</section>
+</section>
+<section id="conclusão" class="level2">
+<h2 class="anchored" data-anchor-id="conclusão">Conclusão</h2>
+<p>A análise de regressão linear fornece uma ferramenta poderosa para entender e quantificar a relação entre educação e renda, permitindo fazer previsões e tomar decisões baseadas em dados.</p>
 
 
+</section>
 
  ]]></description>
-  <category>regressão</category>
+  <category>Regressão</category>
   <category>dados</category>
-  <guid>https://your-website-url.example.com/posts/atividade-2-onibus/</guid>
+  <guid>https://your-website-url.example.com/posts/atividade-2-linear/</guid>
   <pubDate>Sun, 23 Nov 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://your-website-url.example.com/posts/atividade-2-linear/regressao.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Consulta do dólar</title>
-  <dc:creator>Edson Silva</dc:creator>
+  <dc:creator>Edson </dc:creator>
   <link>https://your-website-url.example.com/posts/atividade-1-dolar/</link>
   <description><![CDATA[ 
 
@@ -252,7 +556,7 @@ font-style: inherit;"># Exibe o gráfico</span></span>
 
 
 <p>Neste post irei mostrar como desenvolver uma função em python que irá se conectar com a API do Banco Central. Esta função utilizará uma consulta que trará a consulta do valor do dólar no mês referente</p>
-<div id="935005e7" class="cell" data-execution_count="1">
+<div id="88368b94" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> requests</span>
@@ -736,9 +1040,9 @@ Gráfico gerado com sucesso! Total de dias: 30</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
-        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.2.0.min.js" integrity="sha256-iZ2u/oU2wf/vDbl/ChcX93WgbBRSBvUO6N413hDz7xM=" crossorigin="anonymous"></script>                <div id="28b83510-65a3-4e52-a975-e7d2e117d21c" class="plotly-graph-div" style="height:600px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("28b83510-65a3-4e52-a975-e7d2e117d21c")) {                    Plotly.newPlot(                        "28b83510-65a3-4e52-a975-e7d2e117d21c",                        [{"line":{"color":"blue","width":2},"marker":{"size":4},"mode":"lines+markers","name":"Cota\u00e7\u00e3o Compra","x":["2025-05-02T00:00:00","2025-05-03T00:00:00","2025-05-04T00:00:00","2025-05-05T00:00:00","2025-05-06T00:00:00","2025-05-07T00:00:00","2025-05-08T00:00:00","2025-05-09T00:00:00","2025-05-10T00:00:00","2025-05-11T00:00:00","2025-05-12T00:00:00","2025-05-13T00:00:00","2025-05-14T00:00:00","2025-05-15T00:00:00","2025-05-16T00:00:00","2025-05-17T00:00:00","2025-05-18T00:00:00","2025-05-19T00:00:00","2025-05-20T00:00:00","2025-05-21T00:00:00","2025-05-22T00:00:00","2025-05-23T00:00:00","2025-05-24T00:00:00","2025-05-25T00:00:00","2025-05-26T00:00:00","2025-05-27T00:00:00","2025-05-28T00:00:00","2025-05-29T00:00:00","2025-05-30T00:00:00","2025-05-31T00:00:00"],"y":[5.6388,5.6388,5.6388,5.6514,5.7204,5.7368,5.6854,5.6505,5.6505,5.6505,5.6816,5.6256,5.6094,5.6322,5.6919,5.6919,5.6919,5.6585,5.6614,5.6565,5.6384,5.6926,5.6926,5.6926,5.6613,5.6533,5.693,5.6553,5.7081,5.7081],"type":"scatter"},{"line":{"color":"red","width":2},"marker":{"size":4},"mode":"lines+markers","name":"Cota\u00e7\u00e3o Venda","x":["2025-05-02T00:00:00","2025-05-03T00:00:00","2025-05-04T00:00:00","2025-05-05T00:00:00","2025-05-06T00:00:00","2025-05-07T00:00:00","2025-05-08T00:00:00","2025-05-09T00:00:00","2025-05-10T00:00:00","2025-05-11T00:00:00","2025-05-12T00:00:00","2025-05-13T00:00:00","2025-05-14T00:00:00","2025-05-15T00:00:00","2025-05-16T00:00:00","2025-05-17T00:00:00","2025-05-18T00:00:00","2025-05-19T00:00:00","2025-05-20T00:00:00","2025-05-21T00:00:00","2025-05-22T00:00:00","2025-05-23T00:00:00","2025-05-24T00:00:00","2025-05-25T00:00:00","2025-05-26T00:00:00","2025-05-27T00:00:00","2025-05-28T00:00:00","2025-05-29T00:00:00","2025-05-30T00:00:00","2025-05-31T00:00:00"],"y":[5.6394,5.6394,5.6394,5.652,5.721,5.7375,5.686,5.6511,5.6511,5.6511,5.6822,5.6262,5.61,5.6328,5.6925,5.6925,5.6925,5.6591,5.662,5.6571,5.639,5.6932,5.6932,5.6932,5.6619,5.6539,5.6936,5.6559,5.7087,5.7087],"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"xaxis":{"title":{"text":"Data"},"tickformat":"%d\u002f%m"},"title":{"text":"Cota\u00e7\u00e3o do D\u00f3lar - May de 2025"},"yaxis":{"title":{"text":"Cota\u00e7\u00e3o (R$)"}},"hovermode":"x unified","height":600},                        {"responsive": true}                    ).then(function(){
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.2.0.min.js" integrity="sha256-iZ2u/oU2wf/vDbl/ChcX93WgbBRSBvUO6N413hDz7xM=" crossorigin="anonymous"></script>                <div id="c6009232-a388-4532-bf89-75373bcaee26" class="plotly-graph-div" style="height:600px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("c6009232-a388-4532-bf89-75373bcaee26")) {                    Plotly.newPlot(                        "c6009232-a388-4532-bf89-75373bcaee26",                        [{"line":{"color":"blue","width":2},"marker":{"size":4},"mode":"lines+markers","name":"Cota\u00e7\u00e3o Compra","x":["2025-05-02T00:00:00","2025-05-03T00:00:00","2025-05-04T00:00:00","2025-05-05T00:00:00","2025-05-06T00:00:00","2025-05-07T00:00:00","2025-05-08T00:00:00","2025-05-09T00:00:00","2025-05-10T00:00:00","2025-05-11T00:00:00","2025-05-12T00:00:00","2025-05-13T00:00:00","2025-05-14T00:00:00","2025-05-15T00:00:00","2025-05-16T00:00:00","2025-05-17T00:00:00","2025-05-18T00:00:00","2025-05-19T00:00:00","2025-05-20T00:00:00","2025-05-21T00:00:00","2025-05-22T00:00:00","2025-05-23T00:00:00","2025-05-24T00:00:00","2025-05-25T00:00:00","2025-05-26T00:00:00","2025-05-27T00:00:00","2025-05-28T00:00:00","2025-05-29T00:00:00","2025-05-30T00:00:00","2025-05-31T00:00:00"],"y":[5.6388,5.6388,5.6388,5.6514,5.7204,5.7368,5.6854,5.6505,5.6505,5.6505,5.6816,5.6256,5.6094,5.6322,5.6919,5.6919,5.6919,5.6585,5.6614,5.6565,5.6384,5.6926,5.6926,5.6926,5.6613,5.6533,5.693,5.6553,5.7081,5.7081],"type":"scatter"},{"line":{"color":"red","width":2},"marker":{"size":4},"mode":"lines+markers","name":"Cota\u00e7\u00e3o Venda","x":["2025-05-02T00:00:00","2025-05-03T00:00:00","2025-05-04T00:00:00","2025-05-05T00:00:00","2025-05-06T00:00:00","2025-05-07T00:00:00","2025-05-08T00:00:00","2025-05-09T00:00:00","2025-05-10T00:00:00","2025-05-11T00:00:00","2025-05-12T00:00:00","2025-05-13T00:00:00","2025-05-14T00:00:00","2025-05-15T00:00:00","2025-05-16T00:00:00","2025-05-17T00:00:00","2025-05-18T00:00:00","2025-05-19T00:00:00","2025-05-20T00:00:00","2025-05-21T00:00:00","2025-05-22T00:00:00","2025-05-23T00:00:00","2025-05-24T00:00:00","2025-05-25T00:00:00","2025-05-26T00:00:00","2025-05-27T00:00:00","2025-05-28T00:00:00","2025-05-29T00:00:00","2025-05-30T00:00:00","2025-05-31T00:00:00"],"y":[5.6394,5.6394,5.6394,5.652,5.721,5.7375,5.686,5.6511,5.6511,5.6511,5.6822,5.6262,5.61,5.6328,5.6925,5.6925,5.6925,5.6591,5.662,5.6571,5.639,5.6932,5.6932,5.6932,5.6619,5.6539,5.6936,5.6559,5.7087,5.7087],"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"xaxis":{"title":{"text":"Data"},"tickformat":"%d\u002f%m"},"title":{"text":"Cota\u00e7\u00e3o do D\u00f3lar - May de 2025"},"yaxis":{"title":{"text":"Cota\u00e7\u00e3o (R$)"}},"hovermode":"x unified","height":600},                        {"responsive": true}                    ).then(function(){
                             
-var gd = document.getElementById('28b83510-65a3-4e52-a975-e7d2e117d21c');
+var gd = document.getElementById('c6009232-a388-4532-bf89-75373bcaee26');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
