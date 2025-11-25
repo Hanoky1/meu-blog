@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Edson">
+<meta name="author" content="Edson Vinícius Brito da Silva">
 
 <title>Análise de linhas e paradas - SPTrans – Blog 😎</title>
 <style>
@@ -170,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Autor</div>
       <div class="quarto-title-meta-contents">
-               <p>Edson </p>
+               <p>Edson Vinícius Brito da Silva </p>
             </div>
     </div>
       
@@ -217,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="configuração-e-autenticação" class="level2">
 <h2 class="anchored" data-anchor-id="configuração-e-autenticação">Configuração e Autenticação</h2>
 <p>Primeiro, realizamos a autenticação na API SPTrans e buscamos as linhas disponíveis na região da Lapa.</p>
-<div id="9acca51e" class="cell" data-execution_count="1">
+<div id="486c60e7" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
@@ -241,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="busca-de-linhas-na-lapa" class="level2">
 <h2 class="anchored" data-anchor-id="busca-de-linhas-na-lapa">Busca de Linhas na Lapa</h2>
 <p>Agora buscamos todas as linhas que passam pela região da Lapa.</p>
-<div id="34080186" class="cell" data-execution_count="2">
+<div id="0640299b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Busca linhas na região da Lapa</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>linhas_lapa <span class="op">=</span> s.get(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"http://api.olhovivo.sptrans.com.br/v2.1/Linha/Buscar?termosBusca=Lapa"</span></span>
@@ -266,7 +266,7 @@ Primeiras 3 linhas:
 <section id="mapeamento-de-paradas" class="level2">
 <h2 class="anchored" data-anchor-id="mapeamento-de-paradas">Mapeamento de Paradas</h2>
 <p>Buscamos as paradas da linha 2506 e criamos um mapa interativo com todas as paradas.</p>
-<div id="aca76e8a" class="cell" data-execution_count="3">
+<div id="fdad18d7" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Busca paradas da linha 2506</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> s.get(</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"http://api.olhovivo.sptrans.com.br/v2.1/Parada/BuscarParadasPorLinha?codigoLinha=2506"</span></span>
@@ -290,7 +290,7 @@ Primeiras 3 paradas:
 <section id="visualização-das-paradas-no-mapa" class="level2">
 <h2 class="anchored" data-anchor-id="visualização-das-paradas-no-mapa">Visualização das Paradas no Mapa</h2>
 <p>Criamos um mapa interativo com todas as paradas da linha.</p>
-<div id="772dc704" class="cell" data-execution_count="4">
+<div id="a4180810" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cria mapa centrado na primeira parada</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> Map(location<span class="op">=</span>[paradas[<span class="dv">3</span>][<span class="st">"py"</span>], paradas[<span class="dv">3</span>][<span class="st">"px"</span>]], zoom_start<span class="op">=</span><span class="dv">14</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -327,7 +327,7 @@ Primeiras 3 paradas:
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_f90e4fcf446411cf912dc95437df87c6 {
+                #map_603c44001ec8a99c48acbd630d04054e {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -364,14 +364,14 @@ Primeiras 3 paradas:
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_f90e4fcf446411cf912dc95437df87c6&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_603c44001ec8a99c48acbd630d04054e&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_f90e4fcf446411cf912dc95437df87c6 = L.map(
-                &quot;map_f90e4fcf446411cf912dc95437df87c6&quot;,
+            var map_603c44001ec8a99c48acbd630d04054e = L.map(
+                &quot;map_603c44001ec8a99c48acbd630d04054e&quot;,
                 {
                     center: [-23.528131, -46.670652],
                     crs: L.CRS.EPSG3857,
@@ -388,7 +388,7 @@ Primeiras 3 paradas:
 
         
     
-            var tile_layer_59431c97ff3c88196052d1e99203c95a = L.tileLayer(
+            var tile_layer_6968587ac3e6a8e90d5355ce8fe29e70 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -405,370 +405,370 @@ Primeiras 3 paradas:
             );
         
     
-            tile_layer_59431c97ff3c88196052d1e99203c95a.addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            tile_layer_6968587ac3e6a8e90d5355ce8fe29e70.addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-            var marker_8eb449f5f0902e8698d94f6df7ab8c4d = L.marker(
+            var marker_5f00b4cf8c3aa9eab0eefa469ca0e1c9 = L.marker(
                 [-23.534564, -46.654302],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_3aa4bc024e4870fe9d27ec72d3af96ea = L.popup({
+        var popup_629ebe9f32b8e527d97e4609882a7cce = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_d730f387dfdb1ddb3a142058e2fb4066 = $(`<div id=&quot;html_d730f387dfdb1ddb3a142058e2fb4066&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>ANGELICA B/C</div>`)[0];
-                popup_3aa4bc024e4870fe9d27ec72d3af96ea.setContent(html_d730f387dfdb1ddb3a142058e2fb4066);
+                var html_5d3c7da3eebd6b3f3794a93ce2055a82 = $(`<div id=&quot;html_5d3c7da3eebd6b3f3794a93ce2055a82&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>ANGELICA B/C</div>`)[0];
+                popup_629ebe9f32b8e527d97e4609882a7cce.setContent(html_5d3c7da3eebd6b3f3794a93ce2055a82);
             
         
 
-        marker_8eb449f5f0902e8698d94f6df7ab8c4d.bindPopup(popup_3aa4bc024e4870fe9d27ec72d3af96ea)
+        marker_5f00b4cf8c3aa9eab0eefa469ca0e1c9.bindPopup(popup_629ebe9f32b8e527d97e4609882a7cce)
         ;
 
         
     
     
-            var marker_7d503047f5fe92fd02a45569c62a23c1 = L.marker(
+            var marker_f375b65d97e35d3f6493703b797bd96a = L.marker(
                 [-23.525799, -46.679251],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_4fea923a5ac1e1a763cffa15f92d9a25 = L.popup({
+        var popup_ff43cd05c0e036cf9f2611766cdfcb9b = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_06961d0b2c9034c4b456cce301d12377 = $(`<div id=&quot;html_06961d0b2c9034c4b456cce301d12377&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>PARADA PALMEIRAS B/C</div>`)[0];
-                popup_4fea923a5ac1e1a763cffa15f92d9a25.setContent(html_06961d0b2c9034c4b456cce301d12377);
+                var html_16b4845b8f3320acdf9de725551e992a = $(`<div id=&quot;html_16b4845b8f3320acdf9de725551e992a&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>PARADA PALMEIRAS B/C</div>`)[0];
+                popup_ff43cd05c0e036cf9f2611766cdfcb9b.setContent(html_16b4845b8f3320acdf9de725551e992a);
             
         
 
-        marker_7d503047f5fe92fd02a45569c62a23c1.bindPopup(popup_4fea923a5ac1e1a763cffa15f92d9a25)
+        marker_f375b65d97e35d3f6493703b797bd96a.bindPopup(popup_ff43cd05c0e036cf9f2611766cdfcb9b)
         ;
 
         
     
     
-            var marker_ff03b7bd51b08a29541aa3ec575cd076 = L.marker(
+            var marker_000eb62b04ce7ecfe1a4b4ddbf8cb984 = L.marker(
                 [-23.526523, -46.673588],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_353bcddcc5b42c02602a6bbbea95b49c = L.popup({
+        var popup_5ab927e8d78d030bd2160a3bf6b05787 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_ad66499e05492215bfd61f8aebc96466 = $(`<div id=&quot;html_ad66499e05492215bfd61f8aebc96466&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>ANTARTICA B/C</div>`)[0];
-                popup_353bcddcc5b42c02602a6bbbea95b49c.setContent(html_ad66499e05492215bfd61f8aebc96466);
+                var html_b6076ae46dfc2b6c3f95a9c86bb0434b = $(`<div id=&quot;html_b6076ae46dfc2b6c3f95a9c86bb0434b&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>ANTARTICA B/C</div>`)[0];
+                popup_5ab927e8d78d030bd2160a3bf6b05787.setContent(html_b6076ae46dfc2b6c3f95a9c86bb0434b);
             
         
 
-        marker_ff03b7bd51b08a29541aa3ec575cd076.bindPopup(popup_353bcddcc5b42c02602a6bbbea95b49c)
+        marker_000eb62b04ce7ecfe1a4b4ddbf8cb984.bindPopup(popup_5ab927e8d78d030bd2160a3bf6b05787)
         ;
 
         
     
     
-            var marker_12bc54b3f47da7d7c9dd622f00f22590 = L.marker(
+            var marker_c5d631fafab32d4d500fdbd47d4ed29d = L.marker(
                 [-23.528131, -46.670652],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_7be0607c2e02f24db8a99c5ee8912be9 = L.popup({
+        var popup_9a9b09f5c085b9937fd8bf9b47e2e1c7 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_c622d0a9fd4d9ddaacd22575c228aaec = $(`<div id=&quot;html_c622d0a9fd4d9ddaacd22575c228aaec&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>BABY BARIONY B/C</div>`)[0];
-                popup_7be0607c2e02f24db8a99c5ee8912be9.setContent(html_c622d0a9fd4d9ddaacd22575c228aaec);
+                var html_9b588bd065dc739f54451d291ddcd914 = $(`<div id=&quot;html_9b588bd065dc739f54451d291ddcd914&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>BABY BARIONY B/C</div>`)[0];
+                popup_9a9b09f5c085b9937fd8bf9b47e2e1c7.setContent(html_9b588bd065dc739f54451d291ddcd914);
             
         
 
-        marker_12bc54b3f47da7d7c9dd622f00f22590.bindPopup(popup_7be0607c2e02f24db8a99c5ee8912be9)
+        marker_c5d631fafab32d4d500fdbd47d4ed29d.bindPopup(popup_9a9b09f5c085b9937fd8bf9b47e2e1c7)
         ;
 
         
     
     
-            var marker_687c8040b0ca61d67721cfd5c5796726 = L.marker(
+            var marker_c5895c8038e3e3500144e8bd256f94ab = L.marker(
                 [-23.53021, -46.6669],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_3439f4b5be708ef0ba295cb3cb49fbc2 = L.popup({
+        var popup_89aacea92ef8dcee224093bd9e0b0fe2 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_e42fe6e8af031b8d46c021c6847295df = $(`<div id=&quot;html_e42fe6e8af031b8d46c021c6847295df&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>PQ. DA ÁGUA BRANCA B/C</div>`)[0];
-                popup_3439f4b5be708ef0ba295cb3cb49fbc2.setContent(html_e42fe6e8af031b8d46c021c6847295df);
+                var html_95790d79ff4615d7b53d05f5c1701eca = $(`<div id=&quot;html_95790d79ff4615d7b53d05f5c1701eca&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>PQ. DA ÁGUA BRANCA B/C</div>`)[0];
+                popup_89aacea92ef8dcee224093bd9e0b0fe2.setContent(html_95790d79ff4615d7b53d05f5c1701eca);
             
         
 
-        marker_687c8040b0ca61d67721cfd5c5796726.bindPopup(popup_3439f4b5be708ef0ba295cb3cb49fbc2)
+        marker_c5895c8038e3e3500144e8bd256f94ab.bindPopup(popup_89aacea92ef8dcee224093bd9e0b0fe2)
         ;
 
         
     
     
-            var marker_7ac1bb10bab30355dd4c3dc98a648eec = L.marker(
+            var marker_1b1889b9a52b2a517162c021700ec0e7 = L.marker(
                 [-23.52494, -46.698995],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_48f087d6d23e940b736b01efb8b6ded3 = L.popup({
+        var popup_85ccf9138e9d650fa53f63540582bb40 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_e779ea33ec3637e81459180ebec34cd9 = $(`<div id=&quot;html_e779ea33ec3637e81459180ebec34cd9&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>SCIPIAO B/C</div>`)[0];
-                popup_48f087d6d23e940b736b01efb8b6ded3.setContent(html_e779ea33ec3637e81459180ebec34cd9);
+                var html_3c5e38e9e57a7e982affa64cc43b9f62 = $(`<div id=&quot;html_3c5e38e9e57a7e982affa64cc43b9f62&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>SCIPIAO B/C</div>`)[0];
+                popup_85ccf9138e9d650fa53f63540582bb40.setContent(html_3c5e38e9e57a7e982affa64cc43b9f62);
             
         
 
-        marker_7ac1bb10bab30355dd4c3dc98a648eec.bindPopup(popup_48f087d6d23e940b736b01efb8b6ded3)
+        marker_1b1889b9a52b2a517162c021700ec0e7.bindPopup(popup_85ccf9138e9d650fa53f63540582bb40)
         ;
 
         
     
     
-            var marker_fde3f6800b21204caea45acad2e9655f = L.marker(
+            var marker_5cdd8cbab58ce6a45f813b544429f412 = L.marker(
                 [-23.524994, -46.695297],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_1e28739aa8a0f36a2151799e4f210e14 = L.popup({
+        var popup_b79fed15c8ad6e6b1aa2a5313fc5dcf3 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_a41384b7b4990f899e6cef1b58beec22 = $(`<div id=&quot;html_a41384b7b4990f899e6cef1b58beec22&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>VESPASIANO B/C</div>`)[0];
-                popup_1e28739aa8a0f36a2151799e4f210e14.setContent(html_a41384b7b4990f899e6cef1b58beec22);
+                var html_7b5de75cfc54c280f70183b9d42350e8 = $(`<div id=&quot;html_7b5de75cfc54c280f70183b9d42350e8&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>VESPASIANO B/C</div>`)[0];
+                popup_b79fed15c8ad6e6b1aa2a5313fc5dcf3.setContent(html_7b5de75cfc54c280f70183b9d42350e8);
             
         
 
-        marker_fde3f6800b21204caea45acad2e9655f.bindPopup(popup_1e28739aa8a0f36a2151799e4f210e14)
+        marker_5cdd8cbab58ce6a45f813b544429f412.bindPopup(popup_b79fed15c8ad6e6b1aa2a5313fc5dcf3)
         ;
 
         
     
     
-            var marker_b5f6eb0e31635652b139dec7eef6ec0f = L.marker(
+            var marker_937c4124b2a458c10ba920d934ff3abf = L.marker(
                 [-23.525029, -46.690074],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_698bb5d81f2489eb738bb05c8575fbda = L.popup({
+        var popup_8848631afccb539a6f6672cbd30b7107 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_5db1cf9fe030ccdf023fc434ca144214 = $(`<div id=&quot;html_5db1cf9fe030ccdf023fc434ca144214&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>CORNELIA</div>`)[0];
-                popup_698bb5d81f2489eb738bb05c8575fbda.setContent(html_5db1cf9fe030ccdf023fc434ca144214);
+                var html_fbd046c2594b107ed529bdda6dc81b3b = $(`<div id=&quot;html_fbd046c2594b107ed529bdda6dc81b3b&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>CORNELIA</div>`)[0];
+                popup_8848631afccb539a6f6672cbd30b7107.setContent(html_fbd046c2594b107ed529bdda6dc81b3b);
             
         
 
-        marker_b5f6eb0e31635652b139dec7eef6ec0f.bindPopup(popup_698bb5d81f2489eb738bb05c8575fbda)
+        marker_937c4124b2a458c10ba920d934ff3abf.bindPopup(popup_8848631afccb539a6f6672cbd30b7107)
         ;
 
         
     
     
-            var marker_b37862e868f7afbd8a41d93895f48283 = L.marker(
+            var marker_0b175b39079fda3c9dfaed55a08fe946 = L.marker(
                 [-23.523407, -46.700541],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_7197fc52d61aef5ac21c5df850f0826b = L.popup({
+        var popup_b7d949b3c6ad8d8d2c981cdde3abac30 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_76898115aeee731405b58ffb2e1b783b = $(`<div id=&quot;html_76898115aeee731405b58ffb2e1b783b&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>CATAO B/C</div>`)[0];
-                popup_7197fc52d61aef5ac21c5df850f0826b.setContent(html_76898115aeee731405b58ffb2e1b783b);
+                var html_aad06ab8aac073739590f5c502a31858 = $(`<div id=&quot;html_aad06ab8aac073739590f5c502a31858&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>CATAO B/C</div>`)[0];
+                popup_b7d949b3c6ad8d8d2c981cdde3abac30.setContent(html_aad06ab8aac073739590f5c502a31858);
             
         
 
-        marker_b37862e868f7afbd8a41d93895f48283.bindPopup(popup_7197fc52d61aef5ac21c5df850f0826b)
+        marker_0b175b39079fda3c9dfaed55a08fe946.bindPopup(popup_b7d949b3c6ad8d8d2c981cdde3abac30)
         ;
 
         
     
     
-            var marker_14286165e418ab2c30602100e2f1b4f7 = L.marker(
+            var marker_1855fbcc9e12bd16d347eeb65b502642 = L.marker(
                 [-23.52517, -46.683408],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_d7f0ede7a06eb95f9a28d3bd12bbe57b = L.popup({
+        var popup_581e3d86395319d9a49ba1f82d0e7e84 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_0f5e3b10c407e95323f471bd89ce11f9 = $(`<div id=&quot;html_0f5e3b10c407e95323f471bd89ce11f9&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>SESC POMPEIA B/C</div>`)[0];
-                popup_d7f0ede7a06eb95f9a28d3bd12bbe57b.setContent(html_0f5e3b10c407e95323f471bd89ce11f9);
+                var html_e113aa584bb73914f19406edf504d142 = $(`<div id=&quot;html_e113aa584bb73914f19406edf504d142&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>SESC POMPEIA B/C</div>`)[0];
+                popup_581e3d86395319d9a49ba1f82d0e7e84.setContent(html_e113aa584bb73914f19406edf504d142);
             
         
 
-        marker_14286165e418ab2c30602100e2f1b4f7.bindPopup(popup_d7f0ede7a06eb95f9a28d3bd12bbe57b)
+        marker_1855fbcc9e12bd16d347eeb65b502642.bindPopup(popup_581e3d86395319d9a49ba1f82d0e7e84)
         ;
 
         
     
     
-            var marker_ec648e4d655da4de6c98c7d63c7cfbe2 = L.marker(
+            var marker_dc524292bfb25d7623ed93148e374f71 = L.marker(
                 [-23.540545, -46.643624],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_d5af06dda672f6fc57408f25257cc36e = L.popup({
+        var popup_bf17c8141a3b0021237301b6541f1d88 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_da408d1d7bb43a03a7d15d14f546bcf0 = $(`<div id=&quot;html_da408d1d7bb43a03a7d15d14f546bcf0&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>VITORIA B/C</div>`)[0];
-                popup_d5af06dda672f6fc57408f25257cc36e.setContent(html_da408d1d7bb43a03a7d15d14f546bcf0);
+                var html_2918a513707c7591d0678d86cc8e2c3d = $(`<div id=&quot;html_2918a513707c7591d0678d86cc8e2c3d&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>VITORIA B/C</div>`)[0];
+                popup_bf17c8141a3b0021237301b6541f1d88.setContent(html_2918a513707c7591d0678d86cc8e2c3d);
             
         
 
-        marker_ec648e4d655da4de6c98c7d63c7cfbe2.bindPopup(popup_d5af06dda672f6fc57408f25257cc36e)
+        marker_dc524292bfb25d7623ed93148e374f71.bindPopup(popup_bf17c8141a3b0021237301b6541f1d88)
         ;
 
         
     
     
-            var marker_99687c629d10f1d7a9a294eea9624f48 = L.marker(
+            var marker_0327ab04b8ec95d7f0b1aa85b7b76c0e = L.marker(
                 [-23.532847, -46.657404],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_cda28e44b87de4aabe401bef1542307b = L.popup({
+        var popup_102e7924dcca56ce173ae335cb0a66e8 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_2abffa2cdd7089ba836fb258fbdf26cf = $(`<div id=&quot;html_2abffa2cdd7089ba836fb258fbdf26cf&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>ROSA E SILVA C/B</div>`)[0];
-                popup_cda28e44b87de4aabe401bef1542307b.setContent(html_2abffa2cdd7089ba836fb258fbdf26cf);
+                var html_28d1154010ab9da5eef2ff672c762af3 = $(`<div id=&quot;html_28d1154010ab9da5eef2ff672c762af3&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>ROSA E SILVA C/B</div>`)[0];
+                popup_102e7924dcca56ce173ae335cb0a66e8.setContent(html_28d1154010ab9da5eef2ff672c762af3);
             
         
 
-        marker_99687c629d10f1d7a9a294eea9624f48.bindPopup(popup_cda28e44b87de4aabe401bef1542307b)
+        marker_0327ab04b8ec95d7f0b1aa85b7b76c0e.bindPopup(popup_102e7924dcca56ce173ae335cb0a66e8)
         ;
 
         
     
     
-            var marker_cb5ce5daefef7805da58715b444fece5 = L.marker(
+            var marker_e9c8e3b635a4018a98a63b19d1b3a51b = L.marker(
                 [-23.538708, -46.646888],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_20a616464aad61b614193a669bd90c1c = L.popup({
+        var popup_9f8ffc227d10174d10540c32b0a4c08c = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_0b7c03c335cd9a8a5f3095375b9ac745 = $(`<div id=&quot;html_0b7c03c335cd9a8a5f3095375b9ac745&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>ANA CINTRA B/C</div>`)[0];
-                popup_20a616464aad61b614193a669bd90c1c.setContent(html_0b7c03c335cd9a8a5f3095375b9ac745);
+                var html_f46f5b099380dbc47e14534a41623105 = $(`<div id=&quot;html_f46f5b099380dbc47e14534a41623105&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>ANA CINTRA B/C</div>`)[0];
+                popup_9f8ffc227d10174d10540c32b0a4c08c.setContent(html_f46f5b099380dbc47e14534a41623105);
             
         
 
-        marker_cb5ce5daefef7805da58715b444fece5.bindPopup(popup_20a616464aad61b614193a669bd90c1c)
+        marker_e9c8e3b635a4018a98a63b19d1b3a51b.bindPopup(popup_9f8ffc227d10174d10540c32b0a4c08c)
         ;
 
         
     
     
-            var marker_8102d4df0d4e780e8651e9da1dc596a2 = L.marker(
+            var marker_24a20541a78ca184b2bbe7f63150febd = L.marker(
                 [-23.532068, -46.660957],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_911dc4209f315e8344792ac970dae976 = L.popup({
+        var popup_6ea9528b53c3aee11d6d52548c32256a = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_a5de63c07e125b964566260146ff3050 = $(`<div id=&quot;html_a5de63c07e125b964566260146ff3050&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>PACAEMBU B/C</div>`)[0];
-                popup_911dc4209f315e8344792ac970dae976.setContent(html_a5de63c07e125b964566260146ff3050);
+                var html_fda419b51f5be540451659d68fab351c = $(`<div id=&quot;html_fda419b51f5be540451659d68fab351c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>PACAEMBU B/C</div>`)[0];
+                popup_6ea9528b53c3aee11d6d52548c32256a.setContent(html_fda419b51f5be540451659d68fab351c);
             
         
 
-        marker_8102d4df0d4e780e8651e9da1dc596a2.bindPopup(popup_911dc4209f315e8344792ac970dae976)
+        marker_24a20541a78ca184b2bbe7f63150febd.bindPopup(popup_6ea9528b53c3aee11d6d52548c32256a)
         ;
 
         
     
     
-            var marker_4ccfd7017a45dc59ab5ff233d96ba3f1 = L.marker(
+            var marker_e146dbb6cfb4875782dd9ea97c43c151 = L.marker(
                 [-23.536318, -46.651201],
                 {
 }
-            ).addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            ).addTo(map_603c44001ec8a99c48acbd630d04054e);
         
     
-        var popup_c426e36cb119d4f9c3fe8fc332e8dd01 = L.popup({
+        var popup_85f2c5c48134663e3f5634d185cbe7ad = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_75d6c95157d58cf3687032503a01bafd = $(`<div id=&quot;html_75d6c95157d58cf3687032503a01bafd&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>NOTHMANN C/B</div>`)[0];
-                popup_c426e36cb119d4f9c3fe8fc332e8dd01.setContent(html_75d6c95157d58cf3687032503a01bafd);
+                var html_9503f9627254f02c9ff5ab2f0994959e = $(`<div id=&quot;html_9503f9627254f02c9ff5ab2f0994959e&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>NOTHMANN C/B</div>`)[0];
+                popup_85f2c5c48134663e3f5634d185cbe7ad.setContent(html_9503f9627254f02c9ff5ab2f0994959e);
             
         
 
-        marker_4ccfd7017a45dc59ab5ff233d96ba3f1.bindPopup(popup_c426e36cb119d4f9c3fe8fc332e8dd01)
+        marker_e146dbb6cfb4875782dd9ea97c43c151.bindPopup(popup_85f2c5c48134663e3f5634d185cbe7ad)
         ;
 
         
     
     
-            tile_layer_59431c97ff3c88196052d1e99203c95a.addTo(map_f90e4fcf446411cf912dc95437df87c6);
+            tile_layer_6968587ac3e6a8e90d5355ce8fe29e70.addTo(map_603c44001ec8a99c48acbd630d04054e);
         
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
@@ -778,7 +778,7 @@ Primeiras 3 paradas:
 <section id="posição-em-tempo-real-dos-veículos" class="level2">
 <h2 class="anchored" data-anchor-id="posição-em-tempo-real-dos-veículos">Posição em Tempo Real dos Veículos</h2>
 <p>Consultamos a posição atual dos veículos da linha.</p>
-<div id="58e2109a" class="cell" data-execution_count="5">
+<div id="2a1fbba4" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Busca posição dos veículos</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> s.get(</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"http://api.olhovivo.sptrans.com.br/v2.1//Posicao/Linha?codigoLinha=2506"</span></span>
@@ -787,7 +787,7 @@ Primeiras 3 paradas:
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dados de posição: </span><span class="sc">{</span>posicoes<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Dados de posição: {'hr': '09:55', 'vs': [{'p': '12533', 'a': True, 'ta': '2025-11-25T12:55:03Z', 'py': -23.540844, 'px': -46.6430345, 'sv': None, 'is': None}, {'p': '12615', 'a': True, 'ta': '2025-11-25T12:55:26Z', 'py': -23.520449499999998, 'px': -46.6996115, 'sv': None, 'is': None}, {'p': '12782', 'a': True, 'ta': '2025-11-25T12:55:18Z', 'py': -23.520992749999998, 'px': -46.699836, 'sv': None, 'is': None}, {'p': '12521', 'a': True, 'ta': '2025-11-25T12:54:51Z', 'py': -23.543589249999997, 'px': -46.644211999999996, 'sv': None, 'is': None}]}</code></pre>
+<pre><code>Dados de posição: {'hr': '10:18', 'vs': [{'p': '12615', 'a': True, 'ta': '2025-11-25T13:17:34Z', 'py': -23.520449499999998, 'px': -46.6996115, 'sv': None, 'is': None}, {'p': '12782', 'a': True, 'ta': '2025-11-25T13:17:14Z', 'py': -23.53482675, 'px': -46.653853, 'sv': None, 'is': None}]}</code></pre>
 </div>
 </div>
 </section>
@@ -800,7 +800,7 @@ Primeiras 3 paradas:
 
 </section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> De volta ao topo</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -925,7 +925,7 @@ Primeiras 3 paradas:
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/your-website-url\.example\.com");
+        var filterRegex = new RegExp("https:\/\/seu-usuario\.github\.io\/nome-do-repositorio");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1254,114 +1254,113 @@ Primeiras 3 paradas:
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Análise de linhas e paradas - SPTrans"</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Edson Silva"</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2025-11-23"</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Notícias, Programadores, Analistas, Transporte]</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "onibus.jpg"</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introdução</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>Este documento apresenta uma análise das linhas de ônibus da SPTrans na região da Lapa, utilizando a API Olho Vivo. O código busca informações sobre linhas, paradas e posições dos veículos, gerando visualizações interativas em mapa.</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Configuração e Autenticação</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>Primeiro, realizamos a autenticação na API SPTrans e buscamos as linhas disponíveis na região da Lapa.</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> folium <span class="im">import</span> Map, Marker</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Carrega variáveis de ambiente</span></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>load_dotenv(<span class="st">".env"</span>)</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicia sessão e autentica na API</span></span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> requests.Session()</span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> s.post(</span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"http://api.olhovivo.sptrans.com.br/v2.1/Login/Autenticar?token=</span><span class="sc">{</span>os<span class="sc">.</span>getenv(<span class="st">'SPTRANS_TOKEN'</span>)<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Status da autenticação: </span><span class="sc">{</span>res<span class="sc">.</span>text<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Busca de Linhas na Lapa</span></span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>Agora buscamos todas as linhas que passam pela região da Lapa.</span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Busca linhas na região da Lapa</span></span>
-<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>linhas_lapa <span class="op">=</span> s.get(</span>
-<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>    <span class="st">"http://api.olhovivo.sptrans.com.br/v2.1/Linha/Buscar?termosBusca=Lapa"</span></span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>linhas_lapa <span class="op">=</span> linhas_lapa.json()</span>
-<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibe as 3 primeiras linhas</span></span>
-<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total de linhas encontradas: </span><span class="sc">{</span><span class="bu">len</span>(linhas_lapa)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Primeiras 3 linhas:"</span>)</span>
-<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> linha <span class="kw">in</span> linhas_lapa[:<span class="dv">3</span>]:</span>
-<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>linha<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mapeamento de Paradas</span></span>
-<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>Buscamos as paradas da linha 2506 e criamos um mapa interativo com todas as paradas.</span>
-<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Busca paradas da linha 2506</span></span>
-<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> s.get(</span>
-<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>    <span class="st">"http://api.olhovivo.sptrans.com.br/v2.1/Parada/BuscarParadasPorLinha?codigoLinha=2506"</span></span>
-<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>paradas <span class="op">=</span> res.json()</span>
-<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total de paradas encontradas: </span><span class="sc">{</span><span class="bu">len</span>(paradas)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Primeiras 3 paradas:"</span>)</span>
-<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> parada <span class="kw">in</span> paradas[:<span class="dv">3</span>]:</span>
-<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>parada<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualização das Paradas no Mapa</span></span>
-<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>Criamos um mapa interativo com todas as paradas da linha.</span>
-<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a><span class="co"># Cria mapa centrado na primeira parada</span></span>
-<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> Map(location<span class="op">=</span>[paradas[<span class="dv">3</span>][<span class="st">"py"</span>], paradas[<span class="dv">3</span>][<span class="st">"px"</span>]], zoom_start<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a><span class="co"># Adiciona marcador para cada parada</span></span>
-<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> paradas:</span>
-<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>    Marker(location<span class="op">=</span>[i[<span class="st">"py"</span>], i[<span class="st">"px"</span>]], popup<span class="op">=</span>i[<span class="st">"np"</span>]).add_to(m)</span>
-<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a><span class="co"># Salva o mapa</span></span>
-<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"2506.html"</span>)</span>
-<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mapa salvo como '2506.html'"</span>)</span>
-<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibe o mapa</span></span>
-<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a>m</span>
-<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Posição em Tempo Real dos Veículos</span></span>
-<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>Consultamos a posição atual dos veículos da linha.</span>
-<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Busca posição dos veículos</span></span>
-<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> s.get(</span>
-<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a>    <span class="st">"http://api.olhovivo.sptrans.com.br/v2.1//Posicao/Linha?codigoLinha=2506"</span></span>
-<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a>posicoes <span class="op">=</span> pos.json()</span>
-<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dados de posição: </span><span class="sc">{</span>posicoes<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusão</span></span>
-<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a>Este documento demonstra como utilizar a API Olho Vivo da SPTrans para obter informações sobre transporte público em São Paulo, incluindo linhas, paradas e posicionamento em tempo real dos veículos.</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2025-11-23"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Notícias, Programadores, Analistas, Transporte]</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "onibus.jpg"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introdução</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>Este documento apresenta uma análise das linhas de ônibus da SPTrans na região da Lapa, utilizando a API Olho Vivo. O código busca informações sobre linhas, paradas e posições dos veículos, gerando visualizações interativas em mapa.</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Configuração e Autenticação</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>Primeiro, realizamos a autenticação na API SPTrans e buscamos as linhas disponíveis na região da Lapa.</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> folium <span class="im">import</span> Map, Marker</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Carrega variáveis de ambiente</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>load_dotenv(<span class="st">".env"</span>)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicia sessão e autentica na API</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> requests.Session()</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> s.post(</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"http://api.olhovivo.sptrans.com.br/v2.1/Login/Autenticar?token=</span><span class="sc">{</span>os<span class="sc">.</span>getenv(<span class="st">'SPTRANS_TOKEN'</span>)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Status da autenticação: </span><span class="sc">{</span>res<span class="sc">.</span>text<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Busca de Linhas na Lapa</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>Agora buscamos todas as linhas que passam pela região da Lapa.</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Busca linhas na região da Lapa</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>linhas_lapa <span class="op">=</span> s.get(</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">"http://api.olhovivo.sptrans.com.br/v2.1/Linha/Buscar?termosBusca=Lapa"</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>linhas_lapa <span class="op">=</span> linhas_lapa.json()</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibe as 3 primeiras linhas</span></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total de linhas encontradas: </span><span class="sc">{</span><span class="bu">len</span>(linhas_lapa)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Primeiras 3 linhas:"</span>)</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> linha <span class="kw">in</span> linhas_lapa[:<span class="dv">3</span>]:</span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>linha<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mapeamento de Paradas</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>Buscamos as paradas da linha 2506 e criamos um mapa interativo com todas as paradas.</span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Busca paradas da linha 2506</span></span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> s.get(</span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>    <span class="st">"http://api.olhovivo.sptrans.com.br/v2.1/Parada/BuscarParadasPorLinha?codigoLinha=2506"</span></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>paradas <span class="op">=</span> res.json()</span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total de paradas encontradas: </span><span class="sc">{</span><span class="bu">len</span>(paradas)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Primeiras 3 paradas:"</span>)</span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> parada <span class="kw">in</span> paradas[:<span class="dv">3</span>]:</span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>parada<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualização das Paradas no Mapa</span></span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>Criamos um mapa interativo com todas as paradas da linha.</span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Cria mapa centrado na primeira parada</span></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> Map(location<span class="op">=</span>[paradas[<span class="dv">3</span>][<span class="st">"py"</span>], paradas[<span class="dv">3</span>][<span class="st">"px"</span>]], zoom_start<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Adiciona marcador para cada parada</span></span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> paradas:</span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>    Marker(location<span class="op">=</span>[i[<span class="st">"py"</span>], i[<span class="st">"px"</span>]], popup<span class="op">=</span>i[<span class="st">"np"</span>]).add_to(m)</span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a><span class="co"># Salva o mapa</span></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"2506.html"</span>)</span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mapa salvo como '2506.html'"</span>)</span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibe o mapa</span></span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a>m</span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a><span class="fu">## Posição em Tempo Real dos Veículos</span></span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>Consultamos a posição atual dos veículos da linha.</span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a><span class="co"># Busca posição dos veículos</span></span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> s.get(</span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a>    <span class="st">"http://api.olhovivo.sptrans.com.br/v2.1//Posicao/Linha?codigoLinha=2506"</span></span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a>posicoes <span class="op">=</span> pos.json()</span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dados de posição: </span><span class="sc">{</span>posicoes<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusão</span></span>
+<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a>Este documento demonstra como utilizar a API Olho Vivo da SPTrans para obter informações sobre transporte público em São Paulo, incluindo linhas, paradas e posicionamento em tempo real dos veículos.</span>
 </code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

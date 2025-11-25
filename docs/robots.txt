@@ -1,1 +1,1 @@
-Sitemap: https://your-website-url.example.com/sitemap.xml
+Sitemap: https://seu-usuario.github.io/nome-do-repositorio/sitemap.xml

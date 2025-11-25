@@ -2,10 +2,18 @@ project:
   type: website
   output-dir: docs
 
+# Traduz o site para Português (Muda "Author" para "Autor", "Reading Time" para "Tempo de Leitura")
+lang: pt-BR
+
 website:
-  description: "A blog built with Quarto"
-  site-url: https://your-website-url.example.com # you must change this appropriately for RSS feeds to work properly
+  description: "Um blog construído com Quarto"
+  # Dica: Se souber a URL final do seu Github Pages, coloque abaixo para o RSS funcionar
+  site-url: https://seu-usuario.github.io/nome-do-repositorio 
   title: "Blog 😎"
+  
+  # --- NOVIDADE 1: Botão de voltar ao topo ---
+  back-to-top-navigation: true
+  
   navbar:
     right:
       - about.qmd
@@ -13,12 +21,21 @@ website:
         href: https://github.com/
       - icon: twitter
         href: https://twitter.com
+
 format:
   html:
     theme:
       - cosmo
       - brand
     css: styles.css
-
-
-
+    
+    # --- NOVIDADE 2: Índice lateral automático ---
+    toc: true
+    toc-title: "Nesta página"
+    
+    # --- NOVIDADE 3: Tempo de Leitura ---
+    reading-time: true
+    
+    # Opções de código (como é faculdade, é legal mostrar)
+    code-fold: show
+    code-tools: true

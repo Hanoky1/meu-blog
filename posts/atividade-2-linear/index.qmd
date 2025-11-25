@@ -1,6 +1,5 @@
 ---
 title: "Regressão linear"
-author: "Edson Silva"
 date: "2025-11-23"
 categories: [Regressão, Dados]
 image: "regressao.jpg"
